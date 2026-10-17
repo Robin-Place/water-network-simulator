@@ -12,8 +12,8 @@ Capture de l'interface du projet fournie avec le rapport. Elle montre l'affichag
 
 ## Ce que permet l'application
 
-- Résoudre un modèle linéaire simplifié ou un modèle non linéaire utilisant une relation de Hazen-Williams.
-- Choisir entre `numpy.linalg.solve` et un solveur développé autour d'une factorisation LDLᵀ.
+- Résoudre les équations hydrauliques d'un réseau maillé à partir d'une relation de Hazen-Williams.
+- Calculer les charges hydrauliques par Newton-Raphson avec un solveur développé autour d'une factorisation LDLᵀ.
 - Visualiser le réseau et afficher altitudes, charges hydrauliques, débits et pressions.
 - Modifier dans l'interface la charge à la source, les diamètres et les consommations, puis recalculer les résultats.
 
@@ -25,9 +25,9 @@ Le rapport conclut que les configurations testées ne satisfont pas simultanéme
 
 Voir [le notebook détaillé](Rapport_P2I.ipynb) et [la démarche avec les illustrations originales](docs/demarche-et-resultats.md).
 
-## Ma contribution
+## Contribution de Robin PLACE
 
-J'ai développé la partie logicielle du projet : représentation du réseau, résolution numérique par Newton-Raphson avec Jacobienne numérique, solveur LDLᵀ et interface interactive. Le projet relie calcul scientifique, programmation orientée objet et exploration visuelle des résultats.
+**Robin PLACE** a développé la partie logicielle du projet : représentation du réseau, résolution numérique par Newton-Raphson avec Jacobienne numérique, solveur LDLᵀ et interface interactive. Le projet relie calcul scientifique, programmation orientée objet et exploration visuelle des résultats.
 
 ## Essayer le projet
 
@@ -46,15 +46,14 @@ python -m pip install -r requirements.txt
 python lancer.py --demo
 ```
 
-La démonstration utilise **un réseau synthétique de quatre nœuds et cinq canalisations**, fourni dans le dépôt. Elle permet de découvrir le programme et ne reproduit pas le cas d'étude universitaire.
+La démonstration utilise **le réseau du projet à six nœuds et sept canalisations**, fourni dans `data/demo/`. Les fichiers de connectivité, coordonnées, consommations et diamètres sont ceux transmis par Robin PLACE.
 
-Un [aperçu numérique du réseau synthétique](docs/demo-reseau.png) est également fourni. Il est régénérable avec `python docs/generer_apercu.py`.
+Un [aperçu numérique de ce réseau](docs/demo-reseau.png) est également fourni. Il est régénérable avec `python docs/generer_apercu.py`.
 
 Pour calculer sans ouvrir de fenêtre :
 
 ```sh
 python lancer.py --demo --sans-interface
-python lancer.py --demo --modele lineaire --solveur ldlt --sans-interface
 ```
 
 Pour le réseau original fourni à la racine :
@@ -75,7 +74,7 @@ Si Tkinter manque, vérifier son installation avec `python -m tkinter`. Il est f
 - `Affichage_tout_modele.py` : interface Tkinter.
 - `lancer.py` : lancement sur le réseau de son choix.
 - `Rapport_P2I.ipynb` : démarche scientifique, équations, solveur et exemple de résolution.
-- `tests/` : comparaison à NumPy, cas analytique et conservation des débits.
+- `tests/` : contrôles du solveur, cas analytique et conservation des débits.
 
 ```sh
 python -m unittest discover -s tests -v
@@ -87,10 +86,10 @@ Ces contrôles numériques ne constituent pas une validation complète de l'inte
 
 L'étude reste pédagogique : régime permanent, pertes simplifiées, rugosité fixée et une seule source de charge imposée. Les pressions sont calculées à partir des tronçons discrétisés. Les seuils affichés sont des paramètres de l'étude, sans valeur de certification réglementaire.
 
-Les conventions de signe historiques des débits diffèrent entre les deux modèles. Les tests en tiennent compte. Le solveur LDLᵀ ne réalise pas de pivotement ; les réseaux déconnectés et les cas de non-convergence nécessitent une gestion plus complète.
+Le solveur LDLᵀ ne réalise pas de pivotement ; les réseaux déconnectés et les cas de non-convergence nécessitent une gestion plus complète.
 
 ## Crédits et licence
 
-Développement logiciel : **Robin PLACE**, dans le cadre du P2I à l'INSA Lyon. Le petit jeu de données `data/demo/` a été créé pour cette démonstration.
+Développement logiciel : **Robin PLACE**, dans le cadre du P2I à l'INSA Lyon. Merci à **Florent Prunier** pour le sujet et les données du projet.
 
-Aucune licence de réutilisation n'a encore été choisie. La provenance et les conditions de redistribution des données originales restent à préciser avant d'étendre une licence à l'ensemble du dépôt.
+Le code est disponible sous [licence MIT](LICENSE). Les données fournies dans le cadre du projet conservent leurs conditions d'utilisation propres ; elles ne sont pas relicenciées sous MIT.

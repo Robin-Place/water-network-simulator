@@ -1,4 +1,4 @@
-"""Lancement sur un réseau original ou sur le petit exemple synthétique fourni."""
+"""Lancement sur les réseaux du projet, dont la démonstration à six nœuds."""
 
 import argparse
 from pathlib import Path
@@ -14,11 +14,11 @@ def fichiers_reseau(dossier, numero):
 def main(argv=None):
     parser = argparse.ArgumentParser(description="Simulation pédagogique de réseau d'eau potable.")
     groupe = parser.add_mutually_exclusive_group(required=True)
-    groupe.add_argument("--demo", action="store_true", help="Réseau synthétique fourni (4 nœuds).")
+    groupe.add_argument("--demo", action="store_true", help="Réseau du projet fourni (6 nœuds, 7 canalisations).")
     groupe.add_argument("--data-dir", type=Path, help="Dossier contenant les 4 fichiers du réseau original.")
     parser.add_argument("--network", choices=("0", "2"), default="2", help="Suffixe des fichiers originaux.")
     parser.add_argument("--modele", choices=("lineaire", "non-lineaire"), default="non-lineaire")
-    parser.add_argument("--solveur", choices=("numpy", "ldlt"), default="numpy")
+    parser.add_argument("--solveur", choices=("numpy", "ldlt"), default="ldlt", help="Solveur LDLᵀ par défaut ; NumPy permet de vérifier les résultats.")
     parser.add_argument("--charge-source", type=float, help="Charge à la source (m) : 80 en démo, 200 sur le réseau original.")
     parser.add_argument("--sans-interface", action="store_true", help="Calcul et bilan dans le terminal.")
     args = parser.parse_args(argv)
