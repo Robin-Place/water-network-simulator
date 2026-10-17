@@ -1,0 +1,7 @@
+Exemple synthetique de demonstration - 4 noeuds
+noeud_amont noeud_aval (indices a partir de 1)
+1 2
+2 3
+3 4
+4 1
+2 4
