@@ -9,13 +9,15 @@ Le réseau original comprend `connec2.txt`, `noeuds2.txt`, `debit2.txt` et `Diam
 
 L'ordre des diamètres correspond à celui des canalisations ; l'ordre des débits correspond à celui des nœuds. Le premier nœud est la source de charge imposée.
 
-## Exemple autonome
+## Réseau de démonstration du projet
 
 Les fichiers de `data/demo/` utilisent le format historique suffixé `0` : coordonnées séparées par des espaces et exprimées en mètres ; diamètres déjà exprimés en mètres. Les conversions à la lecture diffèrent donc du format suffixé `2`.
 
-Le réseau synthétique contient quatre nœuds, cinq canalisations et une consommation totale de 30 L/s. Il a été créé pour rendre le dépôt directement essayable. Il ne doit pas être présenté comme le réseau original du projet ou comme un résultat expérimental.
+Les quatre fichiers sont ceux transmis par Robin PLACE pour le réseau de démonstration du projet. Ils contiennent six nœuds et sept canalisations, avec une consommation totale de **780 L/s** sur les cinq nœuds consommateurs.
+
+Les fichiers fournis sont conservés sans modification. La première ligne numérique de `debit0.txt` indique un débit de source de −900 L/s ; ce débit est recalculé lors de la résolution à partir des consommations, soit −780 L/s à l'équilibre.
 
 ## Données originales
 
-Les données originales ont été ajoutées au dépôt par Robin PLACE. La source initiale et les éventuelles conditions de redistribution restent à documenter.
+Le sujet et les données du projet ont été fournis par **Florent Prunier** dans le cadre du P2I à l'INSA Lyon. Robin PLACE a fourni les fichiers intégrés au dépôt. Les données conservent leurs conditions d'utilisation propres et sont exclues du périmètre MIT du code.
 
