@@ -1,5 +1,7 @@
-Consommation par noeud (litres/seconde) - noeud source recalcule
--30
-8
-12
-10
+$débit de fuite aux noeuds en (l/s)
+-900
+50
+130
+150
+200
+250
