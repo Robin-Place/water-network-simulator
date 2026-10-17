@@ -1,0 +1,6 @@
+Exemple synthetique de demonstration - coordonnees en metres
+x y z
+0 0 0
+1000 0 5
+1000 1000 10
+0 1000 5

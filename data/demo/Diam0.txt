@@ -1,0 +1,6 @@
+Diametres des canalisations (metres)
+0.25
+0.20
+0.20
+0.25
+0.15

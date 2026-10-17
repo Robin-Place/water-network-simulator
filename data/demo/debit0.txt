@@ -1,0 +1,5 @@
+Consommation par noeud (litres/seconde) - noeud source recalcule
+-30
+8
+12
+10
