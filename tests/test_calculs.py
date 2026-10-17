@@ -1,4 +1,4 @@
-"""Contrôles numériques indépendants des jeux de données universitaires."""
+"""Contrôles du solveur et des réseaux fournis avec le projet."""
 
 import contextlib
 import io
@@ -69,6 +69,8 @@ class TestReseau(unittest.TestCase):
                     c = Controleur(fichiers, modele, solveur, 1e-8, 80, 2, 9)
                     with contextlib.redirect_stdout(io.StringIO()):
                         c.resolution()
+                    self.assertEqual(len(c.noeuds), 6)
+                    self.assertEqual(len(c.canalisations), 7)
                     self.assertTrue(np.isfinite(c.potentiels).all())
                     bilans = np.zeros(len(c.noeuds))
                     for canal in c.canalisations:
@@ -76,9 +78,9 @@ class TestReseau(unittest.TestCase):
                         debit = -canal.debit if modele == "Linéaire" else canal.debit
                         bilans[canal.noeud1.num] -= debit
                         bilans[canal.noeud2.num] += debit
-                    np.testing.assert_allclose(bilans[1:], np.array([8., 12., 10.]) / 1000, atol=1e-7)
-                    self.assertAlmostEqual(bilans[0], -0.030, places=7)
-                    self.assertAlmostEqual(c.noeuds[0].debit, -30., places=6)
+                    np.testing.assert_allclose(bilans[1:], np.array([50., 130., 150., 200., 250.]) / 1000, atol=1e-7)
+                    self.assertAlmostEqual(bilans[0], -0.780, places=7)
+                    self.assertAlmostEqual(c.noeuds[0].debit, -780., places=6)
                     solutions[(modele, solveur)] = c.potentiels
             np.testing.assert_allclose(solutions[(modele, "Numpy")], solutions[(modele, "LDLT")], atol=1e-6)
 
